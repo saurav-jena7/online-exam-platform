@@ -43,12 +43,8 @@ const Exam = () => {
       }
     };
 
-    if (user?.email) {
-      fetchQuestions();
-    } else {
-      setError('User not logged in.');
-      setLoading(false);
-    }
+    // Fetch global questions even when user is not logged in.
+    fetchQuestions();
   }, [user?.email]);
 
   useEffect(() => {
