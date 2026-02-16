@@ -1,3 +1,4 @@
+// models/Question.js
 const mongoose = require('mongoose');
 
 const questionSchema = new mongoose.Schema({
@@ -8,7 +9,8 @@ const questionSchema = new mongoose.Schema({
   difficulty: { type: String, enum: ['Easy', 'Medium', 'Hard'], default: 'Medium' },
   tags: [String],
   type: { type: String, enum: ['mcq', 'boolean', 'short'], default: 'mcq' },
-    assignedToEmails: [{ type: String }], 
+  assignedToEmails: [{ type: String }],
+  global: { type: Boolean, default: false }, // 🔥 NEW: for every user
   createdAt: { type: Date, default: Date.now }
 });
 
