@@ -26,7 +26,7 @@ const NavbarComponent = () => {
 
   return (
     <nav className="bg- shadow-md px-4 py-2 flex items-center justify-between">
-      <div className="text-xl font-bold text-gray-800">Cybknow Exam Platform</div>
+      <div className="text-xl font-bold text-gray-800">Bhionix Exam Platform</div>
       <div className="flex items-center space-x-4">
         <button
           onClick={handleMinimize}

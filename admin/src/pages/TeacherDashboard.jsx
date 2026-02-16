@@ -156,7 +156,7 @@ const TeacherDashboard = () => {
       </main>
 
       <footer className="mt-16 text-center text-indigo-200 text-sm select-none">
-        &copy; 2025 CybknowExam • All rights reserved
+        &copy; 2025 Cybknow • All rights reserved
       </footer>
     </div>
   );

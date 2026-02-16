@@ -14,14 +14,14 @@ const Footer = () => (
       </a>{' '}
       | Email:{' '}
       <a
-        href="mailto:info@cybknow.com"
+        href="mailto:info@Bhionix.com"
         className="text-blue-400 hover:underline ml-1"
       >
-        info@cybknow.com
+        info@Bhionix.com
       </a>{' '}
       |{' '}
       <a
-        href="https://cybknow.com/"
+        href="https://Bhionix.com/"
         target="_blank"
         rel="noopener noreferrer"
         className="text-blue-400 hover:underline ml-1"

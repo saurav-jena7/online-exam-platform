@@ -99,12 +99,12 @@ const Login = () => {
         <div className="w-1/2 flex items-center justify-center p-8 bg-gray-900">
           <div className="bg-gray-800 p-6 rounded shadow-md w-full max-w-sm text-center">
             <img
-              src="https://cybknow.com/wp-content/uploads/2025/02/logo.png"
+              src="https://Bhionix.com/wp-content/uploads/2025/02/logo.png"
               alt="Login Visual"
               className="w-full mb-4 rounded"
             />
             <p className="text-lg text-gray-300">
-              Welcome to <span className="font-semibold">CybknowExam</span> – Your trusted online exam platform.
+              Welcome to <span className="font-semibold">BhionixExam</span> – Your trusted online exam platform.
             </p>
           </div>
         </div>
