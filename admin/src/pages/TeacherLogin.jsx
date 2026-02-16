@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+// Configure a built-in teacher credential (can be overridden via .env)
+const TEACHER_EMAIL = import.meta.env.VITE_TEACHER_EMAIL || 'teacher@example.com';
+const TEACHER_PASSWORD = import.meta.env.VITE_TEACHER_PASSWORD || 'TeachPass123';
 
 const TeacherLogin = () => {
   const [email, setEmail] = useState('');
@@ -17,6 +20,16 @@ const TeacherLogin = () => {
 
     if (!email || !password) {
       setError('Email and password are required');
+      return;
+    }
+
+    // Local hard-coded teacher credential shortcut
+    if (email === TEACHER_EMAIL && password === TEACHER_PASSWORD) {
+      // store teacher email (and optionally a flag) then redirect
+      localStorage.setItem('teacherEmail', email);
+      // optional token flag for compatibility
+      localStorage.setItem('teacherToken', 'local-auth');
+      navigate('/teacher-dashboard');
       return;
     }
 
