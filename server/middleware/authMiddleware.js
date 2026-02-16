@@ -1,18 +1,14 @@
-const jwt = require('jsonwebtoken');
-
-const JWT_SECRET = process.env.JWT_SECRET;
-
+// JWT removed. Simple header-based authentication.
 function authenticateToken(req, res, next) {
-  const authHeader = req.headers['authorization']; 
-  const token = authHeader && authHeader.split(' ')[1];
-  
-  if (!token) return res.status(401).json({ error: 'Access denied, token missing!' });
+  const email = req.headers['x-user-email'];
+  const role = req.headers['x-user-role'];
 
-  jwt.verify(token, JWT_SECRET, (err, user) => {
-    if (err) return res.status(403).json({ error: 'Token is invalid or expired!' });
-    req.user = user;
-    next();
-  });
+  if (!email) {
+    return res.status(401).json({ error: 'Access denied: user email header missing (x-user-email)' });
+  }
+
+  req.user = { email, role: role || 'student' };
+  next();
 }
 
 module.exports = authenticateToken;

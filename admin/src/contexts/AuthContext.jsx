@@ -13,18 +13,22 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(() => localStorage.getItem('token'));
 
   useEffect(() => {
-    if (user && token) {
+    if (user) {
       localStorage.setItem('user', JSON.stringify(user));
-      localStorage.setItem('token', token);
     } else {
       localStorage.removeItem('user');
+    }
+
+    if (token) {
+      localStorage.setItem('token', token);
+    } else {
       localStorage.removeItem('token');
     }
   }, [user, token]);
 
   const login = (userData, jwtToken) => {
     setUser(userData);
-    setToken(jwtToken);
+    setToken(jwtToken || null);
   };
 
   const logout = () => {

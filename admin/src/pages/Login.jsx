@@ -72,7 +72,7 @@ const Login = () => {
       }
 
       setTempUser({ email: data.email, role: data.role });
-      setTempToken(data.token);
+      setTempToken(data.token || null);
       setShowModal(true);
       setError('');
     } catch (err) {
@@ -81,7 +81,7 @@ const Login = () => {
   };
 
   const handleAgree = () => {
-    if (tempUser && tempToken) {
+    if (tempUser) {
       login(tempUser, tempToken);
     }
     setShowModal(false);

@@ -9,13 +9,21 @@ const studentSubmissionRoutes = require('./routes/studentSubmissionRoutes');
 
 const app = express();
 
-app.use(cors({
-  origin: [
-    'https://online-exam-platform5.vercel.app', 
-    'http://localhost:5173' 
-  ],
-  credentials: true,
-}));
+const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || 'http://localhost:5173').split(',');
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true); // allow non-browser requests or same-origin
+      if (ALLOWED_ORIGINS.indexOf(origin) !== -1) {
+        return callback(null, true);
+      }
+      const msg = `The CORS policy for this site does not allow access from the specified Origin: ${origin}`;
+      return callback(new Error(msg), false);
+    },
+    credentials: true,
+  })
+);
 
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
@@ -39,3 +47,21 @@ mongoose.connect(MONGODB_URI, {
 });
 
 module.exports = app;
+
+const PORT = process.env.PORT || 5000;
+
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`🚀 Server listening on port ${PORT}`);
+  });
+
+  process.on('unhandledRejection', (reason, promise) => {
+    console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+    process.exit(1);
+  });
+
+  process.on('uncaughtException', (err) => {
+    console.error('Uncaught Exception thrown:', err);
+    process.exit(1);
+  });
+}
